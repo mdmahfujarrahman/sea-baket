@@ -1,0 +1,6 @@
+@import "~video-react/dist/video-react.css";
+
+.video-player {
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 60px;
+}

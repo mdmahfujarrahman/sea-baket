@@ -1,5 +1,6 @@
 import React from 'react';
 import { useQuery } from 'react-query';
+import Loading from '../../Sheard/Loading';
 import Category from '../Category/Category';
 
 const Categories = () => {
@@ -8,7 +9,9 @@ const Categories = () => {
         fetch("http://localhost:5000/categories").then(res => res.json())
     );
 
-    console.log(categories);
+    if (isLoading){
+        return <Loading/>
+    }
     return (
         <section className="container mx-auto">
             <h2 className="text-4xl text-accent my-14 text-center lg:text-left">CATEGORIES</h2>
