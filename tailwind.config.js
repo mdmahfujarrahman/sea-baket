@@ -2,12 +2,21 @@
 module.exports = {
     content: ["./src/**/*.{js,jsx,ts,tsx}"],
     theme: {
-        colors: {
-            primary: "#0E79BD",
-            secondary: "#FFFFFF",
-            accent: "#37cdbe",
-            neutral: "#3d4451",
+        backgroundImage: {
+            "home-bg": "url('/src/asset/sea-basket.jpg')",
         },
     },
-    plugins: [],
+    daisyui: {
+        themes: [
+            {
+                seatheme: {
+                    primary: "#0E79BD",
+                    secondary: "#FFFFFF",
+                    accent: "#000000",
+                    neutral: "#3d4451",
+                },
+            },
+        ],
+    },
+    plugins: [require("daisyui")],
 };
