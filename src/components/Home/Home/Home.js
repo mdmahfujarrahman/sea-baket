@@ -1,11 +1,11 @@
 import React from 'react';
-import Navbar from '../../Sheard/Navbar';
+import Banner from '../Banner/Banner';
 
 const Home = () => {
     return (
-        <div className="bg-home-bg bg-cover bg-no-repeat">
-            <Navbar/>
-        </div>
+        <section className="bg-home-bg bg-cover bg-no-repeat">
+            <Banner/>
+        </section>
     );
 };
 
