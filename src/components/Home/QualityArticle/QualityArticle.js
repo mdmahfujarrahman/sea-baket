@@ -1,4 +1,3 @@
-import React from 'react';
 import arrow from '../../../asset/arrow.png';
 import './QualityArticle.css';
 

@@ -1,13 +1,10 @@
-import React from 'react';
-import { useQuery } from 'react-query';
+import useFaqs from '../../../hooks/useFaqs';
 import Loading from '../../Sheard/Loading';
 import Faq from '../Faq/Faq';
 
 const Faqs = () => {
+    const [faqs, isLoading] = useFaqs("");
     
-    const { data: faqs, isLoading } = useQuery("faqs", () =>
-        fetch("http://localhost:5000/faqs").then((res) => res.json())
-    );
 
     if (isLoading) {
         return <Loading />;

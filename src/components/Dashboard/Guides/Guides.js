@@ -1,61 +1,61 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import useFaqs from "../../../hooks/useFaqs";
+import useBlogs from "../../../hooks/useBlogs";
 import Loading from "../../Sheard/Loading";
-import FaqsDelete from "./FaqsDelete";
-import SingleFaq from "./SingleFaq";
+import DeleteBlogs from "./DeleteBlogs";
+import SingleBlog from "./SingleBlog";
 
-const Faqs = () => {
-    const [faqs, isLoading, refetch] = useFaqs([]);
+const Guides = () => {
+    const [guides, isLoading, refetch] = useBlogs("");
     const [deleteId, setDeleteId] = useState("");
 
 
-    if(isLoading){
-        return <Loading /> 
+    if (isLoading) {
+        return <Loading />
     }
-    
-    
-    return (
 
+    return (
+        <div>
             <section className="overflow-x-auto">
                 <h2 className="text-center text-4xl my-8 text-secondary">
-                    Manage FAQs
+                    Manage Guides Blog
                 </h2>
                 <div className="flex justify-center my-4">
                     <Link
-                        to="/dashboard/faqs/add"
+                        to="/dashboard/guides/add"
                         className="btn btn-success text-accent"
                     >
-                        Add Faqs
+                        Add Guides Blog
                     </Link>
                 </div>
                 <table className="table w-full">
                     <thead className="text-secondary">
                         <tr className="">
                             <th>Serial</th>
-                            <th>Question</th>
+                            <th>Blog Title</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody className="text-primary">
-                        {faqs.map((faq, index) => (
-                            <SingleFaq
-                                faq={faq}
+                        {guides.map((guide, index) => (
+                            <SingleBlog
+                                guide={guide}
                                 setDeleteId={setDeleteId}
-                                key={faq._id}
                                 index={index}
+                                key={guide._id}
                             />
                         ))}
                         {deleteId && (
-                            <FaqsDelete
-                                refetch={refetch}
+                            <DeleteBlogs
                                 deleteId={deleteId}
+                                refetch={refetch}
                             />
                         )}
                     </tbody>
                 </table>
             </section>
+        </div>
     );
 };
 
-export default Faqs;
+export default Guides;

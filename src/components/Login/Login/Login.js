@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -23,7 +23,6 @@ const Login = () => {
 
     useEffect(() => {
         if (token) {
-            console.log("ok");
             navigate(from, { replace: true });
         }
     }, [token, from, navigate]);

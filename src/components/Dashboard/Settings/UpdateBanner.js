@@ -1,10 +1,12 @@
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import useBanner from "../../../hooks/useBanner";
+import Loading from "../../Sheard/Loading";
 
-
-const AddCategory = () => {
-    const navigate = useNavigate()
+const UpdateBanner = () => {
+    const [banner, isLoading] = useBanner({});
+    const navigate = useNavigate();
     const {
         register,
         formState: { errors },
@@ -12,12 +14,13 @@ const AddCategory = () => {
         reset,
     } = useForm();
 
-
+    if (isLoading) {
+        return <Loading />;
+    }
 
     const imageStorageKey = "2bc7a08d0869c10a0b788f6de08bcd57";
 
     const onSubmit = (data) => {
-        const name = data.name
         const image = data.image[0];
         const formData = new FormData();
         formData.append("image", image);
@@ -30,52 +33,41 @@ const AddCategory = () => {
             .then((res) => res.json())
             .then((upload) => {
                 if (upload.success) {
-                    const img = upload.data.url; 
-                    const addedCategory = {
+                    const img = upload.data.url;
+                    const updateImage = {
                         img: img,
-                        name: name.toLowerCase(),
+                        _id: banner._id,
                     };
-                    fetch(`https://seabasketorganic.herokuapp.com/categories`, {
-                        method: "POST",
+
+                    fetch(`https://seabasketorganic.herokuapp.com/images`, {
+                        method: "PUT",
                         headers: {
                             "content-type": "application/json",
-                            authorization: `Bearer ${localStorage.getItem(
-                                "accessToken"
-                            )}`,
                         },
-                        body: JSON.stringify(addedCategory),
+                        body: JSON.stringify(updateImage),
                     })
-                    .then((res) => {
-
-                            return res.json();
-                    })
-                    .then((added) => {
-                            reset();
-                            if (added.results) {
-                                toast.success(
-                                    `${data.name} successfully added`
-                                );
-                                navigate("/dashboard");
+                        .then((res) => res.json())
+                        .then((update) => {
+                            if (update.modifiedCount > 0) {
+                                reset();
+                                toast.success("banner Update Successsfully");
+                                navigate("/dashboard/settings");
                             }
-                    });
-
+                        });
                 }
-                    
-                
             });
     };
+
     return (
         <section>
             <div className="card mx-auto w-full  max-w-sm shadow-2xl mt-36 bg-base-100">
                 <h5 className="text-center mt-8 text-4xl text-accent">
-                    Add New Category
+                    Upload New Banner 
                 </h5>
                 <form onSubmit={handleSubmit(onSubmit)} className="card-body ">
                     <div className="form-control mx-auto w-full max-w-xs">
                         <label className="label">
-                            <span className="label-text text-accent">
-                                Photo
-                            </span>
+                            <span className="label-text text-accent">Banner</span>
                         </label>
                         <input
                             {...register("image", {
@@ -95,25 +87,14 @@ const AddCategory = () => {
                             )}
                         </label>
                     </div>
-                    <div className="form-control mx-auto w-full max-w-xs">
-                        <label className="label">
-                            <span className="label-text text-accent">Name</span>
-                        </label>
-                        <input
-                            {...register("name")}
-                            type="text"
-                            placeholder="Enter Category Name"
-                            className="input input-bordered focus:outline-primary w-full max-w-xs"
-                        />
-                    </div>
                     <input
                         className="btn mt-4 btn-outline btn-primary"
                         type="submit"
-                        value="Add New Category"
+                        value="Upload New Banner"
                     />
-                    <Link to="/dashboard">
+                    <Link to="/dashboard/settings">
                         <button className="btn w-80 btn-outline btn-success">
-                            Back To Category
+                            Back To Settings
                         </button>
                     </Link>
                 </form>
@@ -122,4 +103,4 @@ const AddCategory = () => {
     );
 };
 
-export default AddCategory;
+export default UpdateBanner;

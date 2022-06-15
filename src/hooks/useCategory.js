@@ -6,7 +6,7 @@ const useCategory = () => {
         isLoading,
         refetch,
     } = useQuery("categories", () =>
-        fetch("http://localhost:5000/categories").then((res) => res.json())
+        fetch("https://seabasketorganic.herokuapp.com/categories").then((res) => res.json())
     );
 
     

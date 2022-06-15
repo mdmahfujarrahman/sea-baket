@@ -1,29 +1,24 @@
 import { useNavigate } from "react-router-dom";
 
-const SingleCategory = ({ category, index, setDeleteId }) => {
-    const { _id, name, img } = category;
-    const navigate = useNavigate()
+const SingleFaq = ({ faq, index, setDeleteId }) => {
+    const { _id, question } = faq;
+    const navigate = useNavigate();
 
     const getId = (id) => {
         setDeleteId(id);
     };
 
     const updateCategory = (id) => {
-        navigate(`/dashboard/category/${id}`)
-    }
+        navigate(`/dashboard/faqs/${id}`);
+    };
 
     return (
         <tr>
             <th>{index + 1}</th>
-            <td>
-                <div className="avatar">
-                    <img src={img} alt="name" />
-                </div>
-            </td>
-            <td className="uppercase">{name}</td>
+            <td className="uppercase">{question}</td>
             <td>
                 <label
-                    for="delete-category"
+                    for="delete-faqs"
                     onClick={() => getId(_id)}
                     className="btn btn-sm ml-4 btn-primary text-white"
                 >
@@ -40,4 +35,4 @@ const SingleCategory = ({ category, index, setDeleteId }) => {
     );
 };
 
-export default SingleCategory;
+export default SingleFaq;

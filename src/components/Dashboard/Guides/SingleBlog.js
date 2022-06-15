@@ -1,36 +1,30 @@
 import { useNavigate } from "react-router-dom";
 
-const SingleCategory = ({ category, index, setDeleteId }) => {
-    const { _id, name, img } = category;
-    const navigate = useNavigate()
+const SingleBlog = ({ guide, index, setDeleteId }) => {
+    const { _id, title } = guide;
+    const navigate = useNavigate();
 
     const getId = (id) => {
         setDeleteId(id);
     };
 
-    const updateCategory = (id) => {
-        navigate(`/dashboard/category/${id}`)
-    }
-
+    const updateBlog = (id) => {
+        navigate(`/dashboard/guides/${id}`);
+    };
     return (
         <tr>
             <th>{index + 1}</th>
-            <td>
-                <div className="avatar">
-                    <img src={img} alt="name" />
-                </div>
-            </td>
-            <td className="uppercase">{name}</td>
+            <td className="uppercase">{title}</td>
             <td>
                 <label
-                    for="delete-category"
+                    for="delete-blog"
                     onClick={() => getId(_id)}
                     className="btn btn-sm ml-4 btn-primary text-white"
                 >
                     Delete
                 </label>
                 <button
-                    onClick={() => updateCategory(_id)}
+                    onClick={() => updateBlog(_id)}
                     className="btn btn-sm ml-4 btn-primary text-white"
                 >
                     Update
@@ -40,4 +34,4 @@ const SingleCategory = ({ category, index, setDeleteId }) => {
     );
 };
 
-export default SingleCategory;
+export default SingleBlog;

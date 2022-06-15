@@ -15,19 +15,19 @@ const Category = () => {
     }
 
     return (
-        <section class="overflow-x-auto">
-            <h2 class="text-center text-4xl my-8 text-secondary">
+        <section className="overflow-x-auto">
+            <h2 className="text-center text-4xl my-8 text-secondary">
                 Manage Category
             </h2>
-            <div class="flex justify-center my-4">
+            <div className="flex justify-center my-4">
                 <Link
                     to="/dashboard/category/add"
-                    class="btn btn-success text-accent"
+                    className="btn btn-success text-accent"
                 >
                     Add Category
                 </Link>
             </div>
-            <table class="table w-full">
+            <table className="table w-full">
                 <thead className="text-secondary">
                     <tr className="">
                         <th>Serial</th>

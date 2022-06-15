@@ -1,15 +1,22 @@
-import React from 'react';
-import logo from '../../asset/logo.png';
+import useLogo from '../../hooks/useLogo';
+import Loading from './Loading';
 
 const Footer = () => {
     const currentYear = new Date().getFullYear();
+    const [logo, isLoading] = useLogo({});
+
+    if (isLoading) {
+        return <Loading />
+    }
+
+
     return (
         <footer className="bg-primary text-secondary">
             <section className="container mx-auto py-14">
                 <div className="flex flex-col md:flex-row justify-between pb-12 ml-5 md:ml-0">
                     <img
                         className="w-48 mb-10"
-                        src={logo}
+                        src={logo.img}
                         alt="sea basket logo"
                     />
                     <div className="flex flex-col md:flex-row space-x-0 md:space-x-14 space-y-10 md:space-y-0 ">

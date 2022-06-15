@@ -1,4 +1,3 @@
-import React from 'react';
 import { useQuery } from 'react-query';
 import Loading from '../../Sheard/Loading';
 import QualityArticle from '../QualityArticle/QualityArticle';
@@ -6,7 +5,7 @@ import QualityArticle from '../QualityArticle/QualityArticle';
 const ProductQuality = () => {
 
     const { data: articles, isLoading } = useQuery("articles", () =>
-        fetch("http://localhost:5000/articles").then((res) => res.json())
+        fetch("https://seabasketorganic.herokuapp.com/articles").then((res) => res.json())
     );
 
     if (isLoading) {

@@ -2,16 +2,16 @@
 import { toast } from "react-toastify";
 
 
-const CategoryDeleteModal = ({ deleteId, refetch }) => {
-    const deleteCategory = () => {
+const FaqsDelete = ({ deleteId, refetch }) => {
+    const deleteFaqs = () => {
         if (deleteId) {
-            fetch(`https://seabasketorganic.herokuapp.com/categories/${deleteId}`, {
+            fetch(`https://seabasketorganic.herokuapp.com/faqs/${deleteId}`, {
                 method: "DELETE",
             })
                 .then((res) => res.json())
                 .then((data) => {
                     if (data.deletedCount > 0) {
-                        toast.success("Category Successfully deleted");
+                        toast.success("Question Successfully deleted");
                         refetch();
                     }
                 });
@@ -20,25 +20,25 @@ const CategoryDeleteModal = ({ deleteId, refetch }) => {
 
     return (
         <div>
-            <input type="checkbox" id="delete-category" className="modal-toggle" />
+            <input type="checkbox" id="delete-faqs" className="modal-toggle" />
             <div className="modal">
                 <div className="modal-box">
                     <h3 className="font-bold text-lg">
-                        Are you sure you want to delete this category?
+                        Are you sure you want to delete this FAQs?
                     </h3>
                     <p className="py-4">
-                        If you delete this category, then this category will be
-                        removed from your database.
+                        If you delete this FAQ, then this FAQ will be removed
+                        from your database.
                     </p>
                     <div className="modal-action">
                         <button
-                            for="delete-category"
-                            onClick={deleteCategory}
+                            for="delete-faqs"
+                            onClick={deleteFaqs}
                             className="btn bg-red-500"
                         >
                             Yes
                         </button>
-                        <label for="delete-category" className="btn">
+                        <label for="delete-faqs" className="btn">
                             No!
                         </label>
                     </div>
@@ -48,4 +48,4 @@ const CategoryDeleteModal = ({ deleteId, refetch }) => {
     );
 };
 
-export default CategoryDeleteModal;
+export default FaqsDelete;

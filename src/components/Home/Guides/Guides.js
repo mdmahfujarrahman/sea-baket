@@ -1,12 +1,9 @@
-import React from 'react';
-import { useQuery } from 'react-query';
+import useBlogs from '../../../hooks/useBlogs';
 import Loading from '../../Sheard/Loading';
 import GuideArticle from '../GuideArticle/GuideArticle';
 
 const Guides = () => {
-    const { data: guides, isLoading } = useQuery("guides", () =>
-        fetch("http://localhost:5000/guides").then((res) => res.json())
-    );
+    const [guides, isLoading] = useBlogs('');
 
     if (isLoading) {
         return <Loading />;

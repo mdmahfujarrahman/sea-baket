@@ -18,7 +18,7 @@ const UpdateCategory = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/categories/${id}`)
+        fetch(`https://seabasketorganic.herokuapp.com/categories/${id}`)
             .then((res) => res.json())
             .then((data) => {
                 setCategoryDetails(data)
@@ -47,7 +47,7 @@ const UpdateCategory = () => {
                     name: data.name,
                 };
 
-            fetch(`http://localhost:5000/categories/${id}`, {
+            fetch(`https://seabasketorganic.herokuapp.com/categories/${id}`, {
                 method: "PUT",
                 headers: {
                     "content-type": "application/json",
