@@ -21,7 +21,10 @@ const Signup = () => {
     const navigate = useNavigate()
 
     let signUpError;
-    if (error || uError) {
+    if (loading) {
+        return <Loading />;
+    }
+    if (error) {
         if (error?.message === "Firebase: Error (auth/email-already-in-use).") {
             signUpError = (
                 <p className="text-red-500 text-center">
@@ -31,18 +34,10 @@ const Signup = () => {
                 </p>
             );
         }
-        if (uError) {
-            signUpError = (
-                <p className="text-red-500 text-center">
-                    <small>Update {uError?.message}</small>
-                </p>
-            );
-        }
+
 
     }
-    if (loading) {
-        return <Loading />;
-    }
+    
     if (token) {
         navigate("/");
         

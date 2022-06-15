@@ -1,17 +1,14 @@
-import React from 'react';
-import { useQuery } from 'react-query';
+import useCategory from '../../../hooks/useCategory';
 import Loading from '../../Sheard/Loading';
 import Category from '../Category/Category';
 
 const Categories = () => {
-
-    const { data: categories, isLoading } = useQuery("categories", () =>
-        fetch("http://localhost:5000/categories").then(res => res.json())
-    );
+    const [categories, isLoading] = useCategory([]);
 
     if (isLoading){
         return <Loading/>
     }
+    
     return (
         <section className="container mx-auto">
             <h2 className="text-4xl text-accent my-14 text-center lg:text-left">CATEGORIES</h2>

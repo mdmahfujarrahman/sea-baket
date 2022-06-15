@@ -7,7 +7,6 @@ import auth from '../../firebase/firebase.init';
 import Loading from './Loading';
 
 
-
 const Navbar = () => {
     const [user, loading] = useAuthState(auth);
     const navigate =useNavigate()
@@ -33,6 +32,7 @@ const Navbar = () => {
             <li>
                 <a href="/">My Cart</a>
             </li>
+            <li>{user && <Link to="/dashboard">Dashboard</Link>}</li>
             <li>
                 {user ? (
                     <button onClick={logout}>Log Out</button>
